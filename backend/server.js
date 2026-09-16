@@ -1,9 +1,13 @@
 const express = require('express');
+// Importation des routes pour les auteurs
+const auteurRoutes = require('./routes/auteurRoutes');
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+// Utilisation des routes pour les auteurs
+app.use('/api/auteurs', auteurRoutes);
 
 app.get('/', (req, res) => {
   res.json({
