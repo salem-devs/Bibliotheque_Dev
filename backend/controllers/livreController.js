@@ -2,7 +2,27 @@ const pool = require('../config/database');
 
 const getLivres = async (req, res) => {
   try {
-    const result = await pool.query(`
+    const { search = '', page = 1, limit = 10 } = req.query;
+
+    const pageNumber = Number(page);
+    const limitNumber = Number(limit);
+    const offset = (pageNumber - 1) * limitNumber;
+
+    const searchValue = `%${search}%`;
+
+    const countResult = await pool.query(
+      `
+      SELECT COUNT(*) AS total
+      FROM livres
+      JOIN auteurs ON livres.auteur_id = auteurs.id
+      WHERE livres.titre ILIKE $1
+         OR auteurs.nom ILIKE $1
+      `,
+      [searchValue]
+    );
+
+    const result = await pool.query(
+      `
       SELECT livres.id,
              livres.titre,
              livres.annee_publication,
@@ -10,10 +30,20 @@ const getLivres = async (req, res) => {
              auteurs.nom AS auteur
       FROM livres
       JOIN auteurs ON livres.auteur_id = auteurs.id
+      WHERE livres.titre ILIKE $1
+         OR auteurs.nom ILIKE $1
       ORDER BY livres.id
-    `);
+      LIMIT $2 OFFSET $3
+      `,
+      [searchValue, limitNumber, offset]
+    );
 
-    res.json(result.rows);
+    res.json({
+      data: result.rows,
+      page: pageNumber,
+      limit: limitNumber,
+      total: Number(countResult.rows[0].total)
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({
