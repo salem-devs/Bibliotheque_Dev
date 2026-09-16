@@ -2,6 +2,7 @@ const express = require('express');
 // Importation des routes pour les auteurs
 const auteurRoutes = require('./routes/auteurRoutes');
 const adherentRoutes = require('./routes/adherentRoutes');
+const livreRoutes = require('./routes/livreRoutes');
 
 const app = express();
 const PORT = 3000;
@@ -10,6 +11,7 @@ app.use(express.json());
 // Utilisation des routes pour les auteurs
 app.use('/api/auteurs', auteurRoutes);
 app.use('/api/adherents', adherentRoutes);
+app.use('/api/livres', livreRoutes);
 
 app.get('/', (req, res) => {
   res.json({
