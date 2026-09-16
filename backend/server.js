@@ -9,6 +9,8 @@ const logger = require('./middlewares/logger');
 const errorHandler = require('./middlewares/errorHandler');
 const notFound = require('./middlewares/notFound');
 
+const statistiqueRoutes = require('./routes/statistiqueRoutes');
+
 const app = express();
 const PORT = 3000;
 
@@ -21,6 +23,7 @@ app.use('/api/auteurs', auteurRoutes);
 app.use('/api/adherents', adherentRoutes);
 app.use('/api/livres', livreRoutes);
 app.use('/api/emprunts', empruntRoutes);
+app.use('/api/statistiques', statistiqueRoutes);    
 
 
 app.get('/', (req, res) => {
