@@ -3,6 +3,7 @@ const express = require('express');
 const auteurRoutes = require('./routes/auteurRoutes');
 const adherentRoutes = require('./routes/adherentRoutes');
 const livreRoutes = require('./routes/livreRoutes');
+const empruntRoutes = require('./routes/empruntRoutes');
 
 const app = express();
 const PORT = 3000;
@@ -12,6 +13,8 @@ app.use(express.json());
 app.use('/api/auteurs', auteurRoutes);
 app.use('/api/adherents', adherentRoutes);
 app.use('/api/livres', livreRoutes);
+app.use('/api/emprunts', empruntRoutes);
+
 
 app.get('/', (req, res) => {
   res.json({
