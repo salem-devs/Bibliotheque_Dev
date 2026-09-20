@@ -14,6 +14,8 @@
     <nav>
       <button data-section="dashboard">Dashboard</button>
       <button data-section="livres">Livres</button>
+        <button data-section="auteurs">Auteurs</button>
+
       <button data-section="adherents">Adhérents</button>
       <button data-section="emprunts">Emprunts</button>
     </nav>
@@ -115,6 +117,51 @@
       </table>
 
       <div id="pagination" class="pagination"></div>
+    </section>
+
+    <!-- AUTEURS -->
+    <section id="auteurs" class="section">
+    <h2>Gestion des auteurs</h2>
+
+    <form id="auteurForm" class="form">
+        <input type="hidden" id="auteurIdForm">
+
+        <input
+        type="text"
+        id="nomAuteur"
+        placeholder="Nom de l'auteur"
+        required
+        >
+
+        <input
+        type="text"
+        id="nationaliteAuteur"
+        placeholder="Nationalité"
+        >
+
+        <button type="submit">Enregistrer</button>
+
+        <button
+        type="button"
+        id="annulerAuteur"
+        class="secondary"
+        >
+        Annuler
+        </button>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Nationalité</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody id="auteursTable"></tbody>
+    </table>
     </section>
 
     <!-- ADHERENTS -->
