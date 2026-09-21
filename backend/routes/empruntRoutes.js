@@ -5,7 +5,8 @@ const {
   createEmprunt,
   retournerEmprunt,
   getEmpruntsEnCours,
-  getEmpruntsEnRetard
+  getEmpruntsEnRetard,
+  getHistoriqueAdherent
 } = require('../controllers/empruntController');
 
 const router = express.Router();
@@ -15,6 +16,7 @@ router.post('/', createEmprunt);
 
 router.get('/en-cours', getEmpruntsEnCours);
 router.get('/en-retard', getEmpruntsEnRetard);
+router.get('/adherent/:adherentId/historique', getHistoriqueAdherent);
 
 router.put('/:id/retour', retournerEmprunt);
 

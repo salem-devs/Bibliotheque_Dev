@@ -464,14 +464,18 @@ async function chargerAdherents() {
           <td>${adherent.contact}</td>
           <td class="actions">
             <button onclick="modifierAdherent(${adherent.id})">
-              Modifier
+                Modifier
+            </button>
+
+            <button onclick="voirHistoriqueAdherent(${adherent.id})">
+                Historique
             </button>
 
             <button
-              class="danger"
-              onclick="supprimerAdherent(${adherent.id})"
+                class="danger"
+                onclick="supprimerAdherent(${adherent.id})"
             >
-              Supprimer
+                Supprimer
             </button>
           </td>
         </tr>
@@ -572,6 +576,56 @@ document.getElementById('annulerAdherent').addEventListener('click', () => {
   document.getElementById('adherentId').value = '';
 });
 
+
+async function voirHistoriqueAdherent(id) {
+  try {
+    const historique = await requete(
+      `${API}/emprunts/adherent/${id}/historique`
+    );
+
+    const zone = document.getElementById('historiqueAdherent');
+
+    if (historique.length === 0) {
+      zone.innerHTML = '<p>Aucun emprunt pour cet adhérent.</p>';
+      return;
+    }
+
+    zone.innerHTML = `
+      <h3>Historique des emprunts</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Livre</th>
+            <th>Date d'emprunt</th>
+            <th>Retour prévu</th>
+            <th>Date de retour</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${historique.map((emprunt) => `
+            <tr>
+              <td>${emprunt.livre}</td>
+              <td>${formaterDate(emprunt.date_emprunt)}</td>
+              <td>${formaterDate(emprunt.date_retour_prevue)}</td>
+              <td>
+                ${
+                  emprunt.date_retour
+                    ? formaterDate(emprunt.date_retour)
+                    : 'Pas encore retourné'
+                }
+              </td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    `;
+
+  } catch (error) {
+    afficherMessage(error.message);
+  }
+}
 /* =========================
    EMPRUNTS
 ========================= */
