@@ -10,6 +10,19 @@ const validerAdherent = (req, res, next) => {
   next();
 };
 
+const validerLivre = (req, res, next) => {
+  const { titre, auteur_id } = req.body;
+
+  if (!titre || !auteur_id) {
+    return res.status(400).json({
+      message: 'Le titre et l’auteur sont obligatoires'
+    });
+  }
+
+  next();
+};
+
 module.exports = {
-  validerAdherent
+  validerAdherent,
+  validerLivre
 };

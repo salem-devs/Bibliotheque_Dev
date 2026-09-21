@@ -7,11 +7,14 @@ const {
   deleteLivre
 } = require('../controllers/livreController');
 
+const { validerLivre } = require('../middlewares/validation');
+
 const router = express.Router();
 
 router.get('/', getLivres);
-router.post('/', createLivre);
+router.post('/', validerLivre, createLivre);
 router.put('/:id', updateLivre);
 router.delete('/:id', deleteLivre);
+
 
 module.exports = router;
