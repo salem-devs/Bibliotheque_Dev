@@ -8,11 +8,12 @@ const {
   getEmpruntsEnRetard,
   getHistoriqueAdherent
 } = require('../controllers/empruntController');
+const { validerEmprunt } = require('../middlewares/validation');
 
 const router = express.Router();
 
 router.get('/', getEmprunts);
-router.post('/', createEmprunt);
+router.post('/', validerEmprunt, createEmprunt);
 
 router.get('/en-cours', getEmpruntsEnCours);
 router.get('/en-retard', getEmpruntsEnRetard);

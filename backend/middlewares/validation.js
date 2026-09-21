@@ -22,7 +22,33 @@ const validerLivre = (req, res, next) => {
   next();
 };
 
+const validerAuteur = (req, res, next) => {
+  const { nom } = req.body;
+
+  if (!nom) {
+    return res.status(400).json({
+      message: 'Le nom de l’auteur est obligatoire'
+    });
+  }
+
+  next();
+};
+
+const validerEmprunt = (req, res, next) => {
+  const { adherent_id, livre_id, date_retour_prevue } = req.body;
+
+  if (!adherent_id || !livre_id || !date_retour_prevue) {
+    return res.status(400).json({
+      message: 'L’adhérent, le livre et la date de retour prévue sont obligatoires'
+    });
+  }
+
+  next();
+};
+
 module.exports = {
   validerAdherent,
-  validerLivre
+  validerLivre,
+  validerAuteur,
+  validerEmprunt
 };
