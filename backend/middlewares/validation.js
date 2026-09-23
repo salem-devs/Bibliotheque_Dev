@@ -27,7 +27,7 @@ const validerAuteur = (req, res, next) => {
 
   if (!nom) {
     return res.status(400).json({
-      message: 'Le nom de l’auteur est obligatoire'
+      message: 'Le nom de l’auteur est obligatoire, tchieee'
     });
   }
 

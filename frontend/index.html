@@ -3,25 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bibliothèque de quartier</title>
+  <title>Bibliotech</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <header class="header">
-    <h1>Bibliothèque de quartier</h1>
+    <!-- <h1>Bibliothèque de quartier</h1> -->
 
-    <nav>
-      <button data-section="dashboard">Dashboard</button>
-      <button data-section="livres">Livres</button>
-        <button data-section="auteurs">Auteurs</button>
-
-      <button data-section="adherents">Adhérents</button>
-      <button data-section="emprunts">Emprunts</button>
+    <nav class="menu">
+      <button class="btn" data-section="dashboard">Dashboard</button>
+      <button class="btn" data-section="livres">Livres</button>
+      <button class="btn" data-section="auteurs">Auteurs</button>
+      <button class="btn" data-section="adherents">Adhérents</button>
+      <button class="btn" data-section="emprunts">Emprunts</button>
     </nav>
   </header>
 
   <main>
+    <!-- Accueil   -->
+    <section class="hero">
+        <img src="images/bibl.png" alt="apartement de luxe" class="hero_bg" />
+
+        <!-- Contenu du hero -->
+        <div class="hero-content">
+          <h1>Bibliotech</h1>
+          <p>
+            Votre prochaine découverte commence ici.
+          </p>
+        </div>
+
+        <!-- Widget de recherche transparent -->
+        <div class="search-box">
+          <div class="search-inputs">
+            <div class="input-group">
+              <p class="label">LOCATION</p>
+            </div>
+            <div class="input-group">
+              <p class="label">PRICE RANGE</p>
+            </div>
+          </div>
+          <button class="btn-explore">EXPLORE PROPERTIES &rarr;</button>
+        </div>
+
+        <!-- Compteurs / Statistiques du bas -->
+        <div class="hero-stats">
+          <div class="stat-item">
+            <h2>300+</h2>
+            <p>PRORIETES</p>
+          </div>
+          <div class="stat-item">
+            <h2>25</h2>
+            <p>CITES</p>
+          </div>
+          <div class="stat-item">
+            <h2>99%</h2>
+            <p>SATISFACTION</p>
+          </div>
+        </div>
+      </section>
 
     <!-- DASHBOARD -->
     <section id="dashboard" class="section active">
@@ -64,7 +108,7 @@
 
     <!-- LIVRES -->
     <section id="livres" class="section">
-      <h2>Gestion des livres</h2>
+      <h2>Ajouter un nouveau livre</h2>
 
       <form id="livreForm" class="form">
         <input type="hidden" id="livreId">
@@ -73,10 +117,10 @@
           type="text"
           id="titre"
           placeholder="Titre du livre"
-          required
+          
         >
 
-        <select id="auteurId" required>
+        <select id="auteurId" >
           <option value="">Sélectionner un auteur</option>
         </select>
 
@@ -121,7 +165,7 @@
 
     <!-- AUTEURS -->
     <section id="auteurs" class="section">
-    <h2>Gestion des auteurs</h2>
+    <h2>Ajouter un nouvel auteur</h2>
 
     <form id="auteurForm" class="form">
         <input type="hidden" id="auteurIdForm">
@@ -130,7 +174,7 @@
         type="text"
         id="nomAuteur"
         placeholder="Nom de l'auteur"
-        required
+        
         >
 
         <input

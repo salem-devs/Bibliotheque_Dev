@@ -5,7 +5,9 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f6f7f9;
+  /* background: #f6f7f9; */
+  background: fixed linear-gradient(to bottom, #ffb477, #765b33);
+  /* background: radial-gradient(circle at top, #31251e 0%, #432f25 80%); */
   color: #1f2937;
 }
 
@@ -14,15 +16,100 @@ body {
 ========================================= */
 
 .header {
-  background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  padding: 22px 30px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+  /* background: fixed linear-gradient(to bottom, #ffb477, #765b33); */
+  padding: 20px 30px 0px 30px;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 9999; /* Force le menu à passer par-dessus l'image de la hero section */
+
+  
 }
 
 .header h1 {
   margin: 0 0 20px;
   font-size: 25px;
   color: #1f2937;
+}
+
+.menu {
+  display: flex;
+  gap: 16px;
+  padding: 16px 22px;
+  background: linear-gradient(135deg, rgba(26, 28, 35, 0.9) 0%, rgba(13, 14, 18, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  width: fit-content;
+  align-items: center;
+  z-index: 9999; /* Force le menu à passer par-dessus l'image de la hero section */
+
+}
+
+/* Style futuriste de base pour chaque bouton .btn */
+.menu .btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 110px;
+  height: 48px;
+  padding: 0 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3);
+  outline: none;
+}
+
+/* Identités visuelles*/
+.menu .btn[data-section="dashboard"] {
+  background: linear-gradient(145deg, #2a2d35, #16181d);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.menu .btn[data-section="livres"], .stats .card:nth-child(2) {
+  background: linear-gradient(145deg, #13382b, #091c15);
+  border-color: rgba(46, 204, 113, 0.3);
+}
+
+.menu .btn[data-section="auteurs"], .stats .card:nth-child(3) {
+  background: linear-gradient(145deg, #1b314d, #0e1a29);
+  border-color: rgba(52, 152, 219, 0.3);
+}
+
+.menu .btn[data-section="adherents"], .stats .card:first-child {
+  background: linear-gradient(145deg, #423818, #211c0c);
+  border-color: rgba(241, 196, 15, 0.3);
+}
+
+.menu .btn[data-section="emprunts"], .stats .card:nth-child(4) {
+  background: linear-gradient(145deg, #421b2d, #210e17);
+  border-color: rgba(231, 76, 60, 0.3);
+}
+
+
+/* Enfoncement clic (Active) */
+.menu .btn:active {
+  transform: translateY(20px);
+}
+
+/* Optionnel : Classe .active ou .selected pour indiquer la page courante */
+.menu .btn.active {
+  border-color: #ffffff;
+  box-shadow: 0 0 15px rgba(169, 223, 7, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* =========================================
@@ -35,11 +122,13 @@ nav {
   flex-wrap: wrap;
 }
 
+
+
 nav button {
   border: 0;
   padding: 10px 16px;
   background: transparent;
-  color: #6b7280;
+  color: rgb(239, 239, 239);
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
@@ -51,6 +140,11 @@ nav button:hover {
   color: #111827;
 }
 
+
+
+
+
+
 /* =========================================
    CONTENU
 ========================================= */
@@ -61,12 +155,78 @@ main {
   padding: 0 20px;
 }
 
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  position: relative;
+  height: 95vh;
+  overflow: hidden;
+  margin-bottom: 40px;
+
+}
+.hero img{
+  border-radius: 50px 0 50px 0;
+}
+
+.hero_bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-content {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+
+}
+
+.hero-content h1 {
+  font-family: "Inter", sans-serif;
+  font-size: 68px;
+  color: #ececec;
+  margin: 0;
+}
+
+.hero-content p {
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  color: #ececec;
+  margin: 10px 0 0;
+}
+
+
 .section {
   display: none;
+  animation: slideIn 0.4s ease;
 }
 
 .section.active {
   display: block;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* =========================================
@@ -75,29 +235,39 @@ main {
 
 .section h2 {
   margin: 0 0 20px;
-  font-size: 24px;
-  color: #111827;
+  font-size: 25px;
+  /* color: #111827; */
+  color: rgb(234, 234, 234);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 /* =========================================
    DASHBOARD — BENTO SIMPLE
 ========================================= */
+#dashboard {
+/* padding-top: 20px; */
+}
 
 .stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   margin-bottom: 16px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+
+  
 }
 
 .stats .card {
   min-height: 145px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  
 }
 
 /* Première carte plus grande */
 
 .stats .card:first-child {
-  grid-column: span 2;
+  grid-column: span 1;
 }
 
 /* =========================================
@@ -106,7 +276,7 @@ main {
 
 .card {
   background: #ffffff;
-  border: 1px solid #e5e7eb;
+  /* border: 1px solid #e5e7eb; */
   border-radius: 16px;
   padding: 22px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
@@ -130,26 +300,22 @@ main {
    CARTES STATISTIQUES
 ========================================= */
 
-.stats .card:first-child {
-  background: #1f2937;
-  border-color: #1f2937;
-}
 
 .stats .card:first-child h3 {
   color: #d1d5db;
 }
 
 .stats .card:first-child p {
-  color: #ffffff;
+    color: #90a316;
   font-size: 48px;
 }
 
 .stats .card:nth-child(2) p {
-  color: #2563eb;
+  color: #16a34a;
 }
 
 .stats .card:nth-child(3) p {
-  color: #16a34a;
+  color: #1637a3;
 }
 
 .stats .card:nth-child(4) p {
@@ -168,16 +334,42 @@ main {
 
 .info-grid .card {
   min-height: 140px;
+    color: white;
+
 }
 
+.info-grid .card:first-child {
+  background: linear-gradient(145deg, #2a2d35, #16181d);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* .info-grid .card:first-child {
+  background: linear-gradient(#d9ba9f, #c1710f);
+  border-color: #c5c5c5;
+} */
+
+.info-grid .card:nth-child(2) {
+  background: linear-gradient(145deg, #13382b, #091c15);
+  border-color: rgba(46, 204, 113, 0.3);
+}
+/* .info-grid .card:nth-child(2) {
+  background: linear-gradient(#9fd9c7, #22b87c);
+} */
+
+/* .info-grid .card:nth-child(3) {
+  background: linear-gradient(#a3d6f4, #4892e7);
+} */
+
+
 .info-grid .card h3 {
-  color: #374151;
+  /* color: #374151; */
+  color: #f6faff;
   font-size: 15px;
 }
 
 .info-grid .card p {
   font-size: 21px;
-  color: #111827;
+  color: #fcfcfc;
 }
 
 /* =========================================
@@ -185,7 +377,9 @@ main {
 ========================================= */
 
 .form {
-  background: #ffffff;
+  /* background: #e49729; */
+  background: fixed linear-gradient(to bottom, #ffb477, #765b33);
+
   border: 1px solid #e5e7eb;
   border-radius: 14px;
   padding: 20px;
@@ -207,7 +401,8 @@ input,
 select {
   border: 1px solid #d1d5db;
   border-radius: 8px;
-  background: #ffffff;
+  /* background: #ebe5c6; */
+  background: linear-gradient(145deg, #c6c6c3, #dee0c5);
   color: #1f2937;
   outline: none;
 }
@@ -229,7 +424,9 @@ select:focus {
 
 button {
   border: none;
-  background: #2563eb;
+  /* background: #2563eb; */
+  background: linear-gradient(145deg, #1752a0, #15345b);
+  border-color: rgba(52, 152, 219, 0.3);
   color: white;
   border-radius: 8px;
   cursor: pointer;
@@ -245,8 +442,8 @@ button.secondary {
 }
 
 button.danger {
-  background: #dc2626;
-}
+  background: linear-gradient(145deg, #941550, #5e1313);
+  border-color: rgba(231, 76, 60, 0.3);}
 
 button.warning {
   background: #d97706;
@@ -275,12 +472,13 @@ table {
   border-collapse: separate;
   border-spacing: 0;
 
-  background: #ffffff;
+  background: fixed linear-gradient(to bottom, #673f1f, #765b33);
   border: 1px solid #e5e7eb;
   border-radius: 12px;
 
   overflow: hidden;
   margin-bottom: 25px;
+  color: #f5f5f5;
 }
 
 th,
@@ -291,8 +489,10 @@ td {
 }
 
 th {
-  background: #f9fafb;
-  color: #6b7280;
+  /* background: #f9fafb; */
+    background: fixed linear-gradient(to bottom, #ffb477, #be9a63);
+
+  color: #2a2d32;
   font-size: 13px;
   font-weight: 600;
 }
@@ -306,7 +506,8 @@ tr:last-child td {
 }
 
 tr:hover td {
-  background: #fafafa;
+  background: fixed linear-gradient(to bottom, #ffb477, #b0905e);
+
 }
 
 /* =========================================
@@ -314,13 +515,17 @@ tr:hover td {
 ========================================= */
 
 .status-disponible {
-  color: #15803d;
+  color: #38a962;
   font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+
 }
 
 .status-emprunte {
-  color: #dc2626;
+  color: #ff4242;
   font-weight: 600;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+
 }
 
 /* =========================================
@@ -328,7 +533,9 @@ tr:hover td {
 ========================================= */
 
 .retard {
-  color: #dc2626;
+  color: #ff4242;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+
   font-weight: 600;
 }
 
