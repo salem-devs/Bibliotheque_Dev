@@ -66,6 +66,18 @@ document.querySelectorAll('nav button').forEach((button) => {
 });
 
 /* =========================
+   OUVERTURE DES FORMULAIRES
+========================= */
+
+document.querySelectorAll('.btn-formulaire').forEach((button) => {
+  button.addEventListener('click', () => {
+    const form = document.getElementById(button.dataset.form);
+
+    form.classList.toggle('ouvert');
+  });
+});
+
+/* =========================
    DASHBOARD
 ========================= */
 
@@ -301,33 +313,6 @@ async function chargerLivres() {
   }
 }
 
-function afficherPagination(result) {
-  const pagination = document.getElementById('pagination');
-
-  pagination.innerHTML = '';
-
-  const totalPages = Math.ceil(result.total / result.limit);
-
-  if (result.page > 1) {
-    pagination.innerHTML += `
-      <button onclick="changerPageLivre(${result.page - 1})">
-        Précédent
-      </button>
-    `;
-  }
-
-  pagination.innerHTML += `
-    <span>Page ${result.page} / ${totalPages || 1}</span>
-  `;
-
-  if (result.page < totalPages) {
-    pagination.innerHTML += `
-      <button onclick="changerPageLivre(${result.page + 1})">
-        Suivant
-      </button>
-    `;
-  }
-}
 
 function changerPageLivre(page) {
   pageLivre = page;

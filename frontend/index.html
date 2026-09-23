@@ -108,9 +108,13 @@
 
     <!-- LIVRES -->
     <section id="livres" class="section">
-      <h2>Ajouter un nouveau livre</h2>
+      <h2>Livres</h2>
 
-      <form id="livreForm" class="form">
+        <button type="button" class="btn-formulaire" data-form="livreForm">
+          + Ajouter un livre
+        </button>
+
+        <form id="livreForm" class="form formulaire-cache">
         <input type="hidden" id="livreId">
 
         <input
@@ -165,9 +169,13 @@
 
     <!-- AUTEURS -->
     <section id="auteurs" class="section">
-    <h2>Ajouter un nouvel auteur</h2>
+    <h2>Auteurs</h2>
 
-    <form id="auteurForm" class="form">
+      <button type="button" class="btn-formulaire" data-form="auteurForm">
+        + Ajouter un auteur
+      </button>
+
+      <form id="auteurForm" class="form formulaire-cache">
         <input type="hidden" id="auteurIdForm">
 
         <input
@@ -210,9 +218,13 @@
 
     <!-- ADHERENTS -->
     <section id="adherents" class="section">
-      <h2>Gestion des adhérents</h2>
+      <h2>Adhérents</h2>
 
-      <form id="adherentForm" class="form">
+      <button type="button" class="btn-formulaire" data-form="adherentForm">
+        + Ajouter un adhérent
+      </button>
+
+      <form id="adherentForm" class="form formulaire-cache">
         <input type="hidden" id="adherentId">
 
         <input
@@ -253,9 +265,13 @@
 
     <!-- EMPRUNTS -->
     <section id="emprunts" class="section">
-      <h2>Gestion des emprunts</h2>
+      <h2>Emprunts</h2>
 
-      <form id="empruntForm" class="form">
+        <button type="button" class="btn-formulaire" data-form="empruntForm">
+          + Nouvel emprunt
+        </button>
+
+        <form id="empruntForm" class="form formulaire-cache">
         <select id="empruntAdherent" required>
           <option value="">Sélectionner un adhérent</option>
         </select>
