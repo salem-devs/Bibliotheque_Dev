@@ -1,16 +1,16 @@
-CREATE TABLE auteurs (
+CREATE TABLE IF NOT EXISTS auteurs (
     id SERIAL PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
     nationalite VARCHAR(100)
 );
 
-CREATE TABLE adherents (
+CREATE TABLE IF NOT EXISTS adherents (
     id SERIAL PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
     contact VARCHAR(150) NOT NULL
 );
 
-CREATE TABLE livres (
+CREATE TABLE IF NOT EXISTS livres (
     id SERIAL PRIMARY KEY,
     titre VARCHAR(200) NOT NULL,
     auteur_id INTEGER NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE livres (
         CHECK (statut IN ('disponible', 'emprunte'))
 );
 
-CREATE TABLE emprunts (
+CREATE TABLE IF NOT EXISTS emprunts (
     id SERIAL PRIMARY KEY,
     adherent_id INTEGER NOT NULL,
     livre_id INTEGER NOT NULL,

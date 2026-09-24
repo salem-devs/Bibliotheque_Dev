@@ -15,6 +15,7 @@ const errorHandler = require('./middlewares/errorHandler');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const initDatabase = require('./config/initDatabase');
 app.use(express.json());
 
 // Permet à Express de servir le frontend
@@ -36,6 +37,16 @@ app.use(notFound);
 // Gestionnaire d'erreurs
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`Serveur démarré sur http://localhost:${PORT}`);
-});
+const startServer = async () => {
+  await initDatabase();
+
+  app.listen(PORT, () => {
+    console.log(`Serveur démarré sur http://localhost:${PORT}`);
+  });
+};
+
+startServer();
+
+// app.listen(PORT, () => {
+//   console.log(`Serveur démarré sur http://localhost:${PORT}`);
+// });
